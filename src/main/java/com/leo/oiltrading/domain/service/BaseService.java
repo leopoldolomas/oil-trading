@@ -6,7 +6,7 @@ import com.leo.oiltrading.domain.repository.Repository;
 public abstract class BaseService<TE, T> extends ReadOnlyBaseService<TE, T> {
 	Repository<TE, T> _repository;
 
-	BaseService(Repository<TE, T> repository) {
+	protected BaseService(Repository<TE, T> repository) {
 		super(repository);
 		_repository = repository;
 	}
