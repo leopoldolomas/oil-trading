@@ -57,5 +57,4 @@ public class MiscServiceImpl implements MiscService {
 		
 		return revenue;
 	}
-
 }

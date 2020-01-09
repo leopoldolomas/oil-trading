@@ -19,9 +19,7 @@ public class OilType extends BaseEntity<String> {
 	
 	@Override
 	public String toString() {
-		return String.format(
-				"[id: %s, type: %s, fixedRevenue: %s, variableRevenue: %s, oilBarrelValue: %s]", 
-				id, type, fixedRevenue, variableRevenue, oilBarrelValue);
+		return id;
 	}
 
 	public Type getType() {
