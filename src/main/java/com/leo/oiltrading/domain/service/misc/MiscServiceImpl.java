@@ -42,7 +42,7 @@ public class MiscServiceImpl implements MiscService {
 
 	@Override
 	public Double calculateInventoryIndex(Map<String, Double> prices, Collection<OilType> oilTypes) {
-		double sum = prices.values().stream().mapToDouble(d -> d).sum();
+		var sum = prices.values().stream().mapToDouble(d -> d).sum();
 		return Math.pow(sum, 1.0 / prices.size());
 	}
 	

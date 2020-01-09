@@ -13,7 +13,7 @@ import com.leo.oiltrading.domain.model.OilType.Type;
 @Repository("oilTypeRepository")
 public class InMemOilTypeRepository implements OilTypeRepository<OilType, String> {
 	
-	private static Map<String, OilType> entities;
+	private final static Map<String, OilType> entities;
 	
 	static {
 		entities = new ConcurrentHashMap<>();

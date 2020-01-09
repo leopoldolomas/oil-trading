@@ -35,7 +35,7 @@ public class OilTypeServiceImpl extends BaseService<OilType, String> implements 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Entity findById(String id) throws Exception {
-		return repository.get(id).get();
+		return repository.get(id).orElse(null);
 	}
 
 	@Override
