@@ -1,6 +1,5 @@
 package com.leo.oiltrading;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -11,48 +10,47 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.leo.oiltrading.domain.model.OilType;
 import com.leo.oiltrading.domain.model.OilType.Type;
-import com.leo.oiltrading.domain.repository.InMemOilTypeRepository;
+import com.leo.oiltrading.domain.service.oiltype.OilTypeService;
 
 @SpringBootTest
-class OilTypeRepositoryTests {
+class OilTypeServiceTests {
 	
-	Logger logger = LoggerFactory.getLogger(OilTypeRepositoryTests.class);
+	Logger logger = LoggerFactory.getLogger(OilTypeServiceTests.class);
 	
 	@Autowired
-	InMemOilTypeRepository repository;
+	OilTypeService service;
 
 	@Test
-	void testInitialValues() {
-		assertTrue(repository.contains("AAC"));
-		assertTrue(repository.contains("REW"));
-		assertTrue(repository.contains("BWO"));
-		assertTrue(repository.contains("TIM"));
-		assertTrue(repository.contains("QFC"));
+	void testInitialValues() throws Exception {
+		assertTrue(service.findById("AAC") != null);
+		assertTrue(service.findById("REW") != null);
+		assertTrue(service.findById("BWO") != null);
+		assertTrue(service.findById("TIM") != null);
+		assertTrue(service.findById("QFC") != null);
 	}
 	
 	@Test
-	void testAddOilType() {
+	void testAddOilType() throws Exception {
 		OilType ot = new OilType("XYZ", "XYZ", Type.STANDARD, 50, 0, 324);
-		repository.add(ot);
-		assertTrue(repository.get("XYZ").get().equals(ot));
+		service.add(ot);
+		assertTrue(service.findById("XYZ").equals(ot));
 	}
 	
 	@Test
-	void testRemoveOilType() {
+	void testRemoveOilType() throws Exception {
 		OilType ot = new OilType("XYZ", "XYZ", Type.STANDARD, 50, 0, 324);
-		repository.add(ot);
-		repository.remove("XYZ");
-		assertFalse(repository.contains("XYZ"));
+		service.add(ot);
+		service.delete("XYZ");
+		assertTrue(service.findById("XYZ") == null);
 	}
 	
 	@Test
-	void testUpdateOilType() {
+	void testUpdateOilType() throws Exception {
 		var ot = new OilType("AAC", "AAC", Type.PREMIUM, 1,  9, 99);
-		repository.update(ot);
-		var _ot = repository.get("AAC").get();
+		service.update(ot);
+		var _ot = (OilType)service.findById("AAC");
 		assertTrue(_ot.getType().equals(Type.PREMIUM));
 		assertTrue(_ot.getVariableRevenue() == 9);
 		assertTrue(_ot.getOilBarrelValue() == 99);
 	}
-
 }
