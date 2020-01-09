@@ -18,6 +18,18 @@ public class OilType extends BaseEntity<String> {
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof OilType)) {
+			return false;
+		}
+		
+		var other = (OilType) obj;
+		
+		return this.getId().equals(other.getId()) &&
+				this.getName().equals(other.getName());
+	}
+	
+	@Override
 	public String toString() {
 		return id;
 	}
