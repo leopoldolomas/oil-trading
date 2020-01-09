@@ -8,5 +8,5 @@ import com.leo.oiltrading.domain.model.OilType;
 public interface MiscService {
 	Map<OilType, Double> calculateRevenueYield(Map<String, Double> prices, Collection<OilType> oilTypes);
 	Map<OilType, Double> calculatePriceEarningsRatio(Map<String, Double> prices, Collection<OilType> oilTypes);
-	Double calculateInventoryIndex(Map<String, Double> prices, Collection<OilType> oilTypes);
+	Double calculateInventoryIndex(Map<String, Double> prices);
 }

@@ -18,7 +18,7 @@ public class MiscServiceImpl implements MiscService {
 		
 		oilTypes.stream().forEach(ot -> {
 			double price = prices.get(ot.getId());
-			double revenue = calculateRevenue(ot, price);
+			double revenue = calculateRevenue(ot);
 			double revenueYield = revenue / price;
 			r.put(ot, revenueYield);
 		});
@@ -32,7 +32,7 @@ public class MiscServiceImpl implements MiscService {
 		
 		oilTypes.stream().forEach(ot -> {
 			double price = prices.get(ot.getId());
-			double revenue = calculateRevenue(ot, price);
+			double revenue = calculateRevenue(ot);
 			double priceEarningsRatio = price / revenue;
 			r.put(ot, priceEarningsRatio);
 		});
@@ -41,20 +41,12 @@ public class MiscServiceImpl implements MiscService {
 	}
 
 	@Override
-	public Double calculateInventoryIndex(Map<String, Double> prices, Collection<OilType> oilTypes) {
+	public Double calculateInventoryIndex(Map<String, Double> prices) {
 		var sum = prices.values().stream().mapToDouble(d -> d).sum();
-		return Math.pow(sum, 1.0 / prices.size());
+		return Math.pow(sum, 1.0 / prices.size()); //n-th root of sum
 	}
 	
-	private double calculateRevenue(OilType ot, double price) {
-		double revenue;
-		
-		if (ot.getType() == Type.STANDARD) {
-			revenue = ot.getFixedRevenue() / price;
-		} else { // PREMIUM
-			revenue = ((ot.getVariableRevenue() / 100.0) * ot.getOilBarrelValue()) / price;
-		}
-		
-		return revenue;
+	private double calculateRevenue(OilType ot) {		
+		return ot.getType() == Type.STANDARD ? ot.getFixedRevenue() : ((ot.getVariableRevenue() / 100.0) * ot.getOilBarrelValue());
 	}
 }

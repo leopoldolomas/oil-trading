@@ -22,7 +22,6 @@ import com.leo.oiltrading.domain.service.oiltype.OilTypeService;
 /**
  * Provides endpoints to calculate values suchas revenue yield, price to earnings ratio
  * and inventory index
- * @author Leo Lomas
  *
  */
 @RestController
@@ -88,7 +87,7 @@ public class MiscController {
 		
 		double r = -1.0;
 		try {
-			r = miscService.calculateInventoryIndex(pricesMap, oilTypeService.getAll());
+			r = miscService.calculateInventoryIndex(pricesMap);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

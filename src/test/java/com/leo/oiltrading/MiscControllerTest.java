@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-@SpringBootTest
 public class MiscControllerTest extends AbstractRestTest {
 	
 	private final static String inputJson = "{ \"AAC\" : 1,\"REW\" : 2,\"BWO\" : 3,\"TIM\" : 4,\"QFC\" : 5 }";
@@ -26,7 +25,6 @@ public class MiscControllerTest extends AbstractRestTest {
 		super.setUp();
 	}
 
-	
 	// (at least one end-to-end scenario using JUnit)
 	@Test
 	public void testRevenueYield() throws Exception {
@@ -38,10 +36,10 @@ public class MiscControllerTest extends AbstractRestTest {
 		String content = mvcResult.getResponse().getContentAsString();
 		var pricesMap = buildPricesMap(content);
 		assertTrue(pricesMap.get("AAC") == 1.0);
-		assertTrue(pricesMap.get("REW") == 1.75);
-		assertTrue(pricesMap.get("QFC") == 0.8800000000000001);
-		assertTrue(pricesMap.get("TIM") == 0.48562500000000003);
-		assertTrue(pricesMap.get("BWO") == 1.888888888888889);
+		assertTrue(pricesMap.get("REW") == 3.5);
+		assertTrue(pricesMap.get("QFC") == 4.4);
+		assertTrue(pricesMap.get("TIM") == 1.9425000000000001);
+		assertTrue(pricesMap.get("BWO") == 5.666666666666667);
 	}
 	
 	// TODO move to a Util class so it can be reused by other classes
