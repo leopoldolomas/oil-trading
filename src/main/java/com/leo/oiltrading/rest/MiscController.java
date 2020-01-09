@@ -97,6 +97,7 @@ public class MiscController {
 		return ResponseEntity.ok(Double.toString(r));
 	}
 
+	// TODO move to a Util class so it can be reused by other classes
 	private Map<String, Double> buildPricesMap(String prices) {
 		return new Gson().fromJson(prices, new TypeToken<HashMap<String, Double>>(){}.getType());
 	}

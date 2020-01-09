@@ -31,7 +31,7 @@ public class OilType extends BaseEntity<String> {
 	
 	@Override
 	public String toString() {
-		return id;
+		return "\"" + id + "\"";
 	}
 
 	public Type getType() {
