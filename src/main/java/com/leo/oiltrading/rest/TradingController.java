@@ -15,7 +15,6 @@ import com.google.gson.Gson;
 import com.leo.oiltrading.domain.model.Transaction;
 import com.leo.oiltrading.domain.model.Transaction.Type;
 import com.leo.oiltrading.domain.model.TransactionVO;
-import com.leo.oiltrading.domain.service.oiltype.OilTypeService;
 import com.leo.oiltrading.domain.service.transaction.TransactionService;
 
 @RestController
@@ -23,9 +22,6 @@ import com.leo.oiltrading.domain.service.transaction.TransactionService;
 public class TradingController {
 	
 	Logger logger = LoggerFactory.getLogger(TradingController.class);
-	
-	@Autowired
-	private OilTypeService oilTypeService;
 	
 	@Autowired
 	private TransactionService transactionService;
@@ -68,5 +64,4 @@ public class TradingController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
-
 }
