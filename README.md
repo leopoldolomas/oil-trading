@@ -1,3 +1,4 @@
+(Just an old assignment to join some company I cannot longer remember its name. Making this repo public since it is outdated)
 # Global Collateral and Margin Management
 I decided to develop this project as a microservice because most financial applications are following the Reactive approach, therefore this application must be consumed as a REST webservice using Postman/SoapUI/curl/etc.
 
